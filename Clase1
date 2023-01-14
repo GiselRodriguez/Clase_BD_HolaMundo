@@ -1,0 +1,98 @@
+-- Clase 1 Hola Mundo profe:Nico
+
+create database holamundo;
+show databases;
+use holamundo;
+CREATE TABLE animales (
+	id int,
+    tipo varchar(255),
+    estado varchar(255),
+    PRIMARY KEY (id)
+);
+
+-- INSERT INTO animales (tipo, estado) VALUES ('chanchito','feliz');
+-- esta linea no será ejecutada
+ALTER TABLE animales MODIFY COLUMN id int auto_increment;
+
+SHOW CREATE TABLE animales;
+CREATE TABLE `animales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+INSERT INTO animales (tipo, estado) VALUES ('chanchito','feliz');
+INSERT INTO animales (tipo, estado) VALUES ('dragon','feliz');
+INSERT INTO animales (tipo, estado) VALUES ('felipe','triste');
+
+SELECT * FROM animales;
+SELECT * FROM animales WHERE id =1;
+SELECT * FROM animales WHERE estado= 'feliz'AND tipo= 'chanchito';
+SELECT * FROM animales WHERE estado= 'feliz';
+
+UPDATE animales SET estado='feliz'WHERE ID =3;
+SELECT * FROM animales;
+
+DELETE FROM animales where estado='feliz';
+-- Error Code: 1175. You are using safe update mode and you tried
+-- to update a table without a WHERE that uses a KEY column To disable
+-- safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
+
+DELETE FROM animales where id=3;
+
+select * from animales;
+
+update animales set estado='triste' where tipo='dragon';
+-- Error Code: 1175. You are using safe update mode and you tried
+-- to update a table without a WHERE that uses a KEY column To disable
+-- safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
+
+
+
+create table user (
+	id int not null auto_increment,
+    name varchar(50) not null,
+    edad int not null,
+    email varchar (100) not null,
+    primary key(id)
+);
+
+insert into user(name,edad,email) values('Oscar', 25,'oscar@gmail.com');
+insert into user(name,edad,email) values('Layla', 15,'layla@gmail.com');
+insert into user(name,edad,email) values('Nicolas', 36,'nico@gmail.com');
+insert into user(name,edad,email) values('Chanchito', 7,'chanchito@gmail.com');
+
+select * from user;
+select * from user limit 1;
+-- Se limita a devolver el primero  "limit 1"
+
+select * from user where edad > 15;
+select * from user where edad >= 15;
+select * from user where edad > 20 and email = 'nico@gmail.com';
+select * from user where edad > 20 or email = 'layla@gmail.com';
+select * from user where email != 'layla@gmail.com';
+select * from user where edad between 15 and 30;             
+ -- Edad (entre = between) 15 y 30  
+ 
+ select * from user where email like '%gmail%';
+ -- contiene la palabra gmail en el medio '%gmail%'
+ 
+ select * from user where email like '%gmail';
+ -- contiene la palabra gmail al final '%gmail'
+
+ select * from user where email like 'oscar%';
+  -- contiene la palabra oscar al principio 'oscar%'
+  
+  select * from user  order by edad asc;
+  select * from user order by edad desc;
+  
+  select max(edad) as mayor from user;
+  select min(edad) as menor from user;
+  
+  select id,  name from user;
+  select id, name as nombre from user;
+  -- Cambiar nombre de columna de 'name' a 'nombre'
+  
+  
+  
